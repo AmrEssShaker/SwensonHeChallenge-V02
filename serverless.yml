@@ -1,0 +1,24 @@
+service: swensonhe-challenge-v02
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: serverless-admin
+  region: us-east-2
+  timeout: 3
+
+functions:
+  listCoffeeProducts:
+    handler: app/controllers/app/app-controllers.listCoffeeProducts
+    events:
+      - http:
+          path: app-api/coffee-products
+          method: get
+          cors: true
+  createCoffeProduct:
+    handler: app/controllers/admin/admin-controllers.createCoffeProduct
+    events:
+      - http:
+          path: admin-api/coffee-products
+          method: post
+          cors: true
